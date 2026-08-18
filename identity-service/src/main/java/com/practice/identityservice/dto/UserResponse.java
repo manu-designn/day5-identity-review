@@ -1,4 +1,4 @@
-package com.practice.identityservice.model;
+package com.practice.identityservice.dto;
 
 public record UserResponse(
 		Long id,
