@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.practice</groupId>
+    <groupId>com.performance</groupId>
     <artifactId>performance-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>performance-service</name>

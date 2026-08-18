@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.practice</groupId>
+    <groupId>com.identity</groupId>
     <artifactId>identity-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>identity-service</name>
