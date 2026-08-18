@@ -1,4 +1,4 @@
-package com.practice.performanceservice.model;
+package com.practice.performanceservice.dto;
 
 public record UserResponse(
 		Long id,
