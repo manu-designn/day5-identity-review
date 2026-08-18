@@ -1,11 +1,16 @@
 package com.practice.performanceservice.client;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
 
-import com.practice.performanceservice.model.UserResponse;
+import com.practice.performanceservice.dto.UserResponse;
+import com.practice.performanceservice.exception.IdentityServiceUnavailableException;
+import com.practice.performanceservice.exception.UserNotFoundException;
 
-@Service
+@Component
 public class UserClient {
 
 	private final RestClient restClient;
@@ -20,8 +25,12 @@ public class UserClient {
 					.uri("/users/{id}", id)
 					.retrieve()
 					.body(UserResponse.class);
-		} catch (Exception ex) {
-			throw new RuntimeException("Identity Service is unavailable");
+
+		} catch (HttpClientErrorException.NotFound notFound) {
+			throw new UserNotFoundException("User not found with id " + id);
+
+		} catch (ResourceAccessException | HttpClientErrorException | HttpServerErrorException unreachable) {
+			throw new IdentityServiceUnavailableException("Identity Service is currently unavailable");
 		}
 	}
 
